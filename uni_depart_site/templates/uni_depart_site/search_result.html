@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+    {% if search_word %}
+        {% for i in result_list %} 
+            <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">{{ i.university }} </a>
+            </br>
+        {% endfor %}    
+    {% endif %}
+
+</div>
+{% endblock content %}

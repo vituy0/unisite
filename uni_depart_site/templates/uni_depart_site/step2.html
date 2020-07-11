@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<title> {% block title %} temp uni detail {% endblock %} </title>
+<head>
+{% block extra-style %} 
+<style>
+    td.sns_icon{
+        padding: 0px;
+    }
+
+</style>
+
+{% endblock%}
+</head>
+{% block content %} 
+
+
+<div class="container">
+    <div class="panel panel-defalut">
+    
+        <ul class="list-group col-sm-6">
+        
+            {% for i in data %}
+                <li class="list-group-item"><a href="#">{{ i.province }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+<div class="panel panel-default col-sm-6">
+    {% comment %} <div class="panel-heading">패널 제목 </div> {% endcomment %}
+    <table class="table">
+    <thead>
+        <tr>
+        <th>번 호 </th>
+        <th>과 이름 </th>
+        <th>홈페이지</th>
+        <th>블로그</th>
+        <th>유튜브</th>
+        <th>페이스북</th>
+        </tr>
+    </thead>
+    {% for i in data %}
+        <tr>
+        <td></td>
+        <td class="sns_icon">{{ i.department }} </td>
+        <td class="sns_icon"><a href="#"><img src="{% static 'imgs/ico_subsns_youtube.jpg' %}"></a></img></td>
+        <td class="sns_icon"><a href="#"><img src="{% static 'imgs/ico_subsns_youtube.jpg' %}"></a></img></td>
+        <td class="sns_icon"><a href="#"><img src="{% static 'imgs/ico_subsns_youtube.jpg' %}"></a></img></td>
+        <td class="sns_icon"><a href="#"><img src="{% static 'imgs/ico_subsns_youtube.jpg' %}"></a></img></td>                 
+        </tr>
+    {% endfor %}
+    </table>
+    </div>
+</div>
+
+
+{% endblock %}

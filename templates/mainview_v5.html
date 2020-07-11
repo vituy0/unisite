@@ -1,0 +1,468 @@
+{% extends 'base3.html' %}
+{% load staticfiles %}
+{% block title %} main {% endblock title%}
+
+{% block extra-style %}
+   <style>
+   .carousel-inner > .item > img {
+      top:0;
+      left:0;
+      min-width: 100%;
+      max-width: 150%;
+      min-height: 200px;
+      max-height: 500px;
+    }
+   .panel {
+      margin-top: 20px;
+      border-radius: 0px;
+      border: 0px;
+   }
+   span.list_panel{
+      padding-left: 15px;
+      
+
+   }
+   span.imgs{
+      display:inline-block; 
+      height:60px;
+      width:60px;
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 5px;
+      
+
+   }
+   div.uni_list_panel{
+      display: inline;
+      float: left;
+      width: 15%
+      height: 40px;
+   }
+   span > img{ 
+      vertical-align: top;
+
+   }
+   .media-list{
+      padding-left: 10px;
+      margin-top: 20px;
+   }
+   .media{
+      {% comment %} border-bottom: 1px solid #ccc; 
+      border-top: 1px solid #ccc; 
+      border: 1px solid #ccc; {% endcomment %}
+      padding: 10px;
+      height: 120px;
+      background-color: #fff;
+   }
+
+   .main_uni_list{
+  
+      border-top: 0px; 
+   }
+   .col-sm-4{
+      padding-left: 0px;
+      padding-right: 0px;         
+   }
+   .col-sm-12{
+      padding-left: 0px;
+      padding-right: 0px;   
+   }
+
+   .row{
+      margin: 0px;
+   }
+   .media-list{
+      padding-left: 0px;
+      padding-right: 20px;
+   }
+   .nav-margin{
+
+   }
+   .nav-tabs{
+      border-bottom: 0px;
+   }
+   .tab-line{
+      border-bottom: 1px solid #ccc;
+      padding: 35px;
+      
+   }
+   .btn-group{
+
+   }
+   .btn-group-justified{
+      margin-top: 30px; 
+      padding-right: 20px;     
+   }
+   .collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+   }
+   .btn-primary{
+      color: #ccc; 
+      background-color: #ccc; 
+      border-color: #2e6da4; 
+   } 
+   .btn{
+      color: #111111; 
+      background-color: #fff; 
+      border-color: #2e6da4; 
+      border-radius: 40px;
+      
+   }
+   .btn-group{
+      padding-right: 11px;   
+      
+   }
+   .btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open>.dropdown-toggle.btn-default {
+    color: #fff;
+    background-color: #6633ff;
+    border-color: #adadad;
+   }
+   .li-menu{
+      float:left;
+      margin-right: 25px;
+      font-size: 20px;
+      color:green;
+   }
+   .ul-menu{
+      list-style: none;
+      margin-bottom: 50px;
+      margin-top: 12px;
+   }
+   ul{
+      padding-inline-start: 0px;
+   }
+   .nav-tabs.nav-justified>li>a{
+      border-bottom: 0;
+   }
+   .nav-justified{
+      
+      
+   }
+   .navbar-fix{
+      background-color: ;
+   }
+   .menu-line{
+      border-bottom: 1px solid #ccc;  
+   }
+   .nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus {
+    border-bottom-color: #ddd;
+   }
+   .fade{
+      display: none;
+
+   }
+   .fade.in{
+      display:block;
+   }
+   .nav-tabs.nav-justified>li {
+      width: 25%;
+      margin: 0 auto;
+      text-align:center; 
+      vertical-align:middle;
+   }
+   .nav-tabs.nav-justified>li.nav-item-middle {
+      width: 0%;
+      margin: 0 auto;
+      text-align:center; 
+      vertical-align:middle;
+   }
+      .nav-tabs.nav-justified>li.nav-item-min {
+      width: 0%;
+      margin: 0 auto;
+      text-align:center; 
+      vertical-align:middle;
+   }
+   .msrot{
+      display: table;   
+   }
+   </style>
+{% endblock %} 
+{% block content %}
+<div class="container-fluid menu-line">
+   <div class="container">
+      <ul class="ul-menu">
+         <li class="li-menu"><a href="#">홈</a></li>
+         <li class="li-menu"><a href="{% url 'main' %}">대학현황</a></li>
+         <li class="li-menu"><a href="{% url 'depart_status' %}">학과현황</a></li>
+         <li class="li-menu">직업정보</li>
+         <li class="li-menu">5</li> 
+      </ul>
+   </div>
+</div> 
+   <div class="container-fluid tab-line" >
+      {% comment %} <div class="container">
+         <ul class="nav nav-tabs nav-justified msrot">
+            <li class="nav-item">
+               <a class="nav-link active" data-toggle="tab" href="#qwe">일반대학</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" data-toggle="tab" href="#asd">전문대학</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" data-toggle="tab" href="#zxc">특수대학</a>
+            </li>
+         </ul>      
+      </div> {% endcomment %}
+      <div class="container">
+         <ul class="nav nav-tabs nav-justified msrot">
+            {% for i in standard_max %}
+            <li class="nav-item-middle">
+               <a class="nav-link active" v-on:click="remove_active({{ i.standard_max_field }})" data-toggle="tab" href="#{{ i.standard_max_field }}">
+               {{ i.standard_max_field }}</a>
+            </li>
+            {% comment %} <li class="nav-item-middle">
+               <a class="nav-link" data-toggle="tab" href="#2">자연과학계열</a>
+            </li>
+            <li class="nav-item-middle">
+               <a class="nav-link" data-toggle="tab" href="#3">예체능계열</a>
+            </li>
+            <li class="nav-item-middle">
+               <a class="nav-link" data-toggle="tab" href="#4">공학계열</a>
+            </li>
+            <li class="nav-item-middle">
+               <a class="nav-link" data-toggle="tab" href="#5">의학계열</a>
+            </li> {% endcomment %}
+            {% endfor %}
+            
+         </ul>      
+      </div>
+      
+      <div class="container">
+         <div class="tab-content">
+            {% for i in standard_max %} 
+               <div class="tab-pane" id="{{ i.standard_max_field }}">
+               
+               <ul class="nav nav-tabs nav-justified msrot">
+               {% for e in standard %}
+               {% if i.standard_max_field == e.standard_max_field %}
+                              
+                  <li class="nav-item-min">
+                     <a class="nav-link active" data-toggle="tab" href="#{{ e.standard_mid_field }}">{{ e.standard_mid_field }}</a>
+                  </li>
+               
+               {% comment %} <button type="button" class="btn btn-default radio-btn" id="{{ e.standard_mid_field }}" onClick="radio_click(this)" 
+               data-toggle="collapse" data-target="#{{ e.standard_mid_field }}" >{{ e.standard_mid_field }}</button> {% endcomment %}
+               {% comment %} <input type="radio" name="collapseGroup" onClick="radio_click(this.id)"data-toggle="collapse" value="{{ e.standard_mid_field }}" data-target="#{{ e.standard_mid_field }}" autocomplete="off">
+               {{ e.standard_mid_field }} {% endcomment %}
+               
+               
+
+               {% endif %}                        
+               {% endfor %}
+               </ul>
+               
+               </div>
+            
+            {% endfor %}
+            <div class="tab-content">
+               
+               {% for e in standard %} 
+               <div class="btn-group1 stan_min_item tab-pane" id="{{ e.standard_mid_field }}" role="group" data-toggle="buttons"> 
+                           
+                  {% for t in standard_min %}
+                     {% if e.standard_mid_field == t.standard_mid_field %}
+                     {% for i in standard_max_min %}
+                     {% if t.standard_min_field == i.standard_min_field %}
+                     
+                     {% comment %} <div class="stan_min collapse"  id="{{ t.standard_mid_field }}">
+                        <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".{{ t.standard_min_field }}" >
+                        <input type="checkbox" role="button" autocomplete="off">
+                        {{ t.standard_min_field }}
+                        </button> 
+                     </div>  {% endcomment %}
+                     <div class="btn-group btn-sort" v-if="'{{ e.standard_max_field }}' === stan_max && '{{ i.standard_max_field }}' === stan_max" data-toggle="collapse" data-target="#{{ t.standard_min_field }}" role="group">
+                        <button type="button" v-on:click="min_button_click('{{ t.standard_min_field }}')" class="btn btn-default">
+                        <input name="min_btn"  type="radio" role="button" autocomplete="off">{{ t.standard_min_field }}</button>
+                     </div>         
+                     
+                     {% endif %}            
+                     {% endfor %}
+                     {% endif %}
+                  {% endfor %}  
+               </div>               
+               {% endfor %}
+         
+            
+            </div>
+            
+         </div>
+         <div class="container">
+            
+         </div>
+      </div>
+   </div>
+   <div class="container">
+
+      <div class="col-sm-12 main_uni_list">                                                                             
+         <div class="btn-group1 btn-group-justified" role="group" data-toggle="buttons">
+            <div class="btn-group btn-sort" data-toggle="collapse" data-target="#Kyunggi" role="group">
+               <button type="button" class="btn btn-default" ><input type="checkbox" role="button" autocomplete="off" >전체</button>
+            </div>            
+            {% for i in province_list %}
+               <div class="btn-group btn-sort" data-toggle="collapse" data-target="#Kyunggi" role="group">
+                  <button type="button" v-on:click="pro_button_click('{{ i.province }}')"class="btn btn-default" >
+                  <input type="radio" role="button" autocomplete="off" > {{ i.province }}</button>
+               </div>
+            {% endfor %}
+          
+         </div>
+         <ul class="media-list">
+            <li class="media" v-for="item in get_info">
+               <div class="media-left">
+                  <a href="#" data-toggle="modal" data-target="#myModal" >
+                  <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                  </a>
+               </div>
+               <div class="media-body">
+                  <a href="#" data-toggle="modal" data-target="#myModal"> 
+                  <h4 class="media-heading">[[ item.university ]] - [[ item.department ]] - [[ item.province ]]</h4> 
+                  </a>
+                  
+               </div>
+            </li>                                                                       
+         </ul>              
+    
+ 
+            
+         <!-- <a href="#"><p class="text-right"><u>더보기</u></p></a> -->
+
+ 
+      </div> <!-- con-sm-12 -->
+         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="panel panel-defalut">
+                        <ul class="list-group">
+                        {% for i in depart %}
+                              
+                           <li class="list-group-item" v-if="{{ i.uni_code }} === code">{{ i.department }}</li> 
+                           
+                        {% endfor %} 
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+
+{% endblock content %}
+{% block extra-script %}
+
+<script>
+      
+   {% comment %} $('.nav-link').on('click', function () {
+      $('.stan_min_item').removeClass('active');
+      console.log("in");
+   });               {% endcomment %}
+//      $('[name="collapseGroup"]').on('change', function(){  
+//      if($(this).val()  === "yes" || $(this).val() === "y"){
+//         $('#collapseOne').collapse('show')
+//      }else{
+//         $('#collapseOne').collapse('hide')
+//      }
+//      });         
+
+    axios.defaults.xsrfCookieName = 'csrftoken';
+    axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+      var vm = new Vue({
+         delimiters: ['[[', ']]'],  
+         el: '.wrapper',
+         data: {
+            name: '',
+            code: 0,
+            stan_max: '',
+            button_notice: 0,
+            click_id: "",
+            get_info: [],
+            send_data: {},
+         },
+         methods: {
+            add_todo: function() {
+               console.log('name:', this.name, this.newTodoItem);
+               if (this.newTodoItem == '') return;
+               if (this.name == '') this.name = '홍길동';
+
+               this.todoItems.push({'name':this.name, 'item':this.newTodoItem});
+               this.clear_input();
+               // axios post
+            },
+            code_input: function(cd){
+               this.code = cd;
+               
+               console.log("cd= ", this.code);
+            },
+            remove_active: function(sm){
+               
+               $('.stan_min_item').removeClass('active');
+               $('.nav-item-min').removeClass('active');
+               this.stan_max = sm.id;
+               console.log("in", this.stan_max);
+            },
+            min_button_click: function(min_id){
+               var id_data = 
+               {
+                  min: min_id,
+                  pro: ""
+               };
+               
+               var vm = this
+
+               axios.get('/api/button_event/', 
+                  {
+                     params: id_data
+                  }
+                  )
+                  .then(function (res) {
+                     console.log("get succes", res);
+                     vm.get_info = res.data;
+                     var count = 0;
+                     //for (var c = 0; c < res.data.length; c++){
+                        //console.log('item: ', res.data[c]);
+                     //   vm.get_info.push({ university: res.data[c].university, department: res.data[c].department, province: res.data[c].province });
+                     //   count++;
+                     //}
+                     vm.click_id = min_id;
+
+                  });
+               console.log("click data: ", min_id);
+               
+               //axios.post('/api/button_event/', "asd");
+            },
+            pro_button_click: function(province){
+               var pro_data = {min: this.click_id, pro: province};
+               var class_name = this;
+               var vm = this;
+               console.log("cn = ", class_name.class);
+               axios.get('/api/button_event/', 
+                  {
+                     
+                     params: pro_data
+                  }
+                  )
+                  .then(function (res) {
+                     console.log("pro sc");
+                     vm.get_info = res.data;
+                  });
+               console.log("click data: ", this.class);
+               
+               //axios.post('/api/button_event/', "asd");
+            },            
+         },
+      })
+</script>
+{% endblock extra-script %}
+{% block footer %}
+
+{% endblock footer %}

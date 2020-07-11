@@ -1,0 +1,794 @@
+{% extends 'base3.html' %}
+{% load staticfiles %}
+{% block title %} main {% endblock title%}
+
+{% block extra-style %}
+   <style>
+   .carousel-inner > .item > img {
+      top:0;
+      left:0;
+      min-width: 100%;
+      max-width: 150%;
+      min-height: 200px;
+      max-height: 500px;
+    }
+   .panel {
+      margin-top: 20px;
+      border-radius: 0px;
+      border: 0px;
+   }
+   span.list_panel{
+      padding-left: 15px;
+      
+
+   }
+   span.imgs{
+      display:inline-block; 
+      height:60px;
+      width:60px;
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 5px;
+      
+
+   }
+   div.uni_list_panel{
+      display: inline;
+      float: left;
+      width: 15%
+      height: 40px;
+   }
+   span > img{ 
+      vertical-align: top;
+
+   }
+   .media-list{
+      padding-left: 10px;
+      margin-top: 20px;
+   }
+   .media{
+      {% comment %} border-bottom: 1px solid #ccc; 
+      border-top: 1px solid #ccc; 
+      border: 1px solid #ccc; {% endcomment %}
+      padding: 10px;
+      height: 120px;
+      background-color: #fff;
+   }
+
+   .main_uni_list{
+  
+      border-top: 0px; 
+   }
+   .col-sm-4{
+      padding-left: 0px;
+      padding-right: 0px;         
+   }
+   .col-sm-12{
+      padding-left: 0px;
+      padding-right: 0px;   
+   }
+
+   .row{
+      margin: 0px;
+   }
+   .media-list{
+      padding-left: 0px;
+      padding-right: 20px;
+   }
+   .nav-margin{
+
+   }
+   .nav-tabs{
+      border-bottom: 0px;
+   }
+   .tab-line{
+      border-bottom: 1px solid #ccc;
+      padding: 35px;
+      
+   }
+   .btn-group{
+
+   }
+   .btn-group-justified{
+      margin-top: 30px; 
+      padding-right: 20px;     
+   }
+   .collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+   }
+   .btn-primary{
+      color: #ccc; 
+      background-color: #ccc; 
+      border-color: #2e6da4; 
+   } 
+   .btn{
+      color: #111111; 
+      background-color: #fff; 
+      border-color: #2e6da4; 
+      border-radius: 40px;
+      
+   }
+   .btn-group{
+      padding-right: 11px;   
+      
+   }
+   .btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open>.dropdown-toggle.btn-default {
+    color: #fff;
+    background-color: #6633ff;
+    border-color: #adadad;
+   }
+   .li-menu{
+      float:left;
+      margin-right: 25px;
+      font-size: 20px;
+      color:green;
+   }
+   .ul-menu{
+      list-style: none;
+      margin-bottom: 50px;
+      margin-top: 12px;
+   }
+   ul{
+      padding-inline-start: 0px;
+   }
+   .nav-tabs.nav-justified>li>a{
+      border-bottom: 0;
+   }
+   .nav-justified{
+      
+      
+   }
+   .navbar-fix{
+      background-color: ;
+   }
+   .menu-line{
+      border-bottom: 1px solid #ccc;  
+   }
+   .nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus {
+    border-bottom-color: #ddd;
+   }
+   .fade{
+      display: none;
+
+   }
+   .fade.in{
+      display:block;
+   }
+   .nav-tabs.nav-justified>li {
+      width: 25%;
+      margin: 0 auto;
+      text-align:center; 
+      vertical-align:middle;
+   }
+   .nav-tabs.nav-justified>li.nav-item-middle {
+      width: 0%;
+      margin: 0 auto;
+      text-align:center; 
+      vertical-align:middle;
+   }
+      .nav-tabs.nav-justified>li.nav-item-min {
+      width: 0%;
+      margin: 0 auto;
+      text-align:center; 
+      vertical-align:middle;
+   }
+   .msrot{
+      display: table;   
+   }
+   </style>
+{% endblock %} 
+{% block content %}
+<div class="container-fluid menu-line">
+   <div class="container">
+      <ul class="ul-menu">
+         <li class="li-menu"><a href="#">홈</a></li>
+         <li class="li-menu"><a href="{% url 'main' %}">대학현황</a></li>
+         <li class="li-menu"><a href="{% url 'depart_status' %}">학과현황</a></li>
+         <li class="li-menu">직업정보</li>
+         <li class="li-menu">5</li> 
+      </ul>
+   </div>
+</div> 
+   <div class="container-fluid tab-line" >
+      <div class="container">
+         <ul class="nav nav-tabs nav-justified msrot">
+            <li class="nav-item">
+               <a class="nav-link active" data-toggle="tab" href="#qwe">일반대학</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" data-toggle="tab" href="#asd">전문대학</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" data-toggle="tab" href="#zxc">특수대학</a>
+            </li>
+         </ul>      
+      </div>
+      
+      
+      
+   </div>
+   <div class="container">
+      
+      <div class="col-sm-12 main_uni_list">
+         <div class="btn-group1 btn-group-justified" role="group" data-toggle="buttons">
+           
+
+            <div class="btn-group btn-sort" data-toggle="collapse" data-target="#Kyunggi" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 경기</button>
+            </div>
+            <div class="btn-group btn-sort" data-toggle="collapse" data-target="#Busan" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 부산</button>
+            </div>
+            
+            
+            <div class="btn-group btn-sort" data-toggle="collapse" data-target="#Daegu" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 대구</button>
+            </div>
+            <div class="btn-group btn-sort" data-toggle="collapse" data-target="#Incheon" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 인천</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#Gwangju" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 광주</button>
+            </div>
+         
+         
+            <div class="btn-group" data-toggle="collapse" data-target="#Daejeon" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" autocomplete="off" > 대전</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#Ulsan" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 울산</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#Gangwon" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 강원</button>
+            </div>
+         
+         
+            <div class="btn-group" data-toggle="collapse" data-target="#Chunbuk" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 충북</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#chunnam" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 충남</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#jeonbuk" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 전북</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#jeonnam" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 전남</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#Gyeongbuk" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 경북</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#Gyeongnam" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 경남</button>
+            </div>
+            <div class="btn-group" data-toggle="collapse" data-target="#Jeju" role="group">
+               <button type="button" class="btn btn-default"><input type="checkbox" role="button" autocomplete="off" > 제주</button>
+            </div>
+            
+            
+         </div>
+         {% comment %} <div class="tab-content">
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+               <div class="btn-group nav-taps" role="group" data-toggle="collapse" data-target="#seoul">
+                  <button type="button" class="btn btn-default">서울</button>
+               </div>
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">경기</button>
+               </div>
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">부산</button>
+               </div>
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">인천</button>
+               </div> 
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">대구</button>
+               </div> 
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">대전</button>
+               </div>  
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">울산</button>
+               </div> 
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">세종</button>
+               </div> 
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">광주</button>
+               </div>
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">강원</button>
+               </div>   
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">충북</button>
+               </div>   
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">충남</button>
+               </div>   
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">전북</button>
+               </div>   
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">전남</button>
+               </div>   
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">경북</button>
+               </div>   
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">경남</button>
+               </div>   
+               <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">제주</button>
+               </div>                 
+
+            </div>{% endcomment %}
+            {% comment %} <div class="">
+             
+               <div class="collapse" id="seoul">
+                  
+                  {% for i in university %}  
+                  {% if i.province == "서울" %}
+                     
+                     <div class="col-sm-4">
+                        <ul class="media-list">
+
+                           <li class="media">
+                              <div class="media-left">
+                                 <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                                 <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                                 </a>
+                              </div>
+                              <div class="media-body">
+                                 <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                                 
+                              </div>
+                           </li>                                                                       
+                        </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>  
+               <div class="collapse" id="busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+            
+            </div> <!-- --> {% endcomment %}
+
+         <div class="tab-pane fade show1 active1 in1" id="qwe">
+
+            <div id="modal-area">
+                
+               <div class="collapse" id="Seoul">
+                  {% for i in university %}
+                   
+                  {% if i.province == "서울" %}
+                     
+                     <div class="col-sm-4">
+                        <ul class="media-list">
+
+                           <li class="media">
+                              <div class="media-left">
+                                 <a href="#" data-toggle="modal" data-target="#myModal" v-on:click="code_input({{ i.uni_code }})">
+                                 <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                                 </a>
+                              </div>
+                              <div class="media-body">
+                                 <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}" v-on:click="code_input({{ i.uni_code }})"> 
+                                 <h4 class="media-heading">{{ i.university }}</h4> 
+                                 </a>
+                                 
+                              </div>
+                           </li>                                                                       
+                        </ul>      
+                     </div>  
+                  {% endif %}
+                  
+                  {% endfor %}
+                  <a href="#" data-toggle="modal" data-target="#myModal">서울</a>
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                           </div>
+                           <div class="modal-body">
+                              <div class="panel panel-defalut">
+                                 <ul class="list-group">
+                                 {% for i in depart %}
+                                      
+                                    <li class="list-group-item" v-if="{{ i.uni_code }} === code">{{ i.department }}</li> 
+                                    
+                                 {% endfor %} 
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>  
+               <div class="collapse" id="Busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Kyunggi">
+                  
+                  {% for i in university %}
+                  {% if i.province == "경기" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Daegu">
+                  
+                  {% for i in university %}
+                  {% if i.province == "대구" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Incheon">
+                  
+                  {% for i in university %}
+                  {% if i.province == "인천" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="collapse" id="Busan">
+                  
+                  {% for i in university %}
+                  {% if i.province == "부산" %}
+                     
+                     <div class="col-sm-4">
+                     <ul class="media-list">
+
+                        <li class="media">
+                           <div class="media-left">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                              <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                              </a>
+                           </div>
+                           <div class="media-body">
+                              <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                              
+                           </div>
+                        </li>                                                                       
+                     </ul>      
+                     </div>  
+                  {% endif %}
+                  {% endfor %}
+               </div>
+            </div>
+            {% comment %} <div class="row">
+               {% for i in university|slice:":30" %}
+               <div class="col-sm-4">
+               <ul class="media-list">
+              
+                  <li class="media">
+                     <div class="media-left">
+                        <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">
+                        <img class="media-object" src="{% static './imgs/ui.gif' %}" alt="..." width="80" height="100">
+                        </a>
+                     </div>
+                     <div class="media-body">
+                        <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}"> <h4 class="media-heading">{{ i.university }}</h4> </a>
+                        
+                     </div>
+                  </li>                                                                       
+               </ul>      
+               </div> 
+               {% endfor %}
+                          
+            </div> <!-- row --> {% endcomment %}
+            
+         </div> 
+            <div class="tab-pane fade" id="asd">
+               ㅁㄴㅇㅁㄴㅇㅁㄴㅇ2   
+            </div>
+            <div class="tab-pane fade" id="zxc">
+               ㅁㄴㅇㅁㄴㅇㅁㄴㅇ3   
+            </div>
+            
+         <!-- <a href="#"><p class="text-right"><u>더보기</u></p></a> -->
+
+ 
+      </div> <!-- con-sm-12 -->
+
+   </div>
+
+{% endblock content %}
+{% block extra-script %}
+
+<script>
+      
+   {% comment %} $('.nav-link').on('click', function () {
+      $('.stan_min_item').removeClass('active');
+      console.log("in");
+   });               {% endcomment %}
+//      $('[name="collapseGroup"]').on('change', function(){  
+//      if($(this).val()  === "yes" || $(this).val() === "y"){
+//         $('#collapseOne').collapse('show')
+//      }else{
+//         $('#collapseOne').collapse('hide')
+//      }
+//      });         
+
+
+      var vm = new Vue({
+         delimiters: ['[[', ']]'],  
+         el: '.wrapper',
+         data: {
+            name: '',
+            code: 0,
+            stan_max: '',
+         },
+         methods: {
+            add_todo: function() {
+               console.log('name:', this.name, this.newTodoItem);
+               if (this.newTodoItem == '') return;
+               if (this.name == '') this.name = '홍길동';
+
+               this.todoItems.push({'name':this.name, 'item':this.newTodoItem});
+               this.clear_input();
+               // axios post
+            },
+            code_input: function(cd){
+               this.code = cd;
+               
+               console.log("cd= ", this.code);
+            },
+            remove_active: function(sm){
+               
+               $('.stan_min_item').removeClass('active');
+               $('.nav-item-min').removeClass('active');
+               this.stan_max = sm.id;
+               console.log("in", this.stan_max);
+            },
+         },
+      })
+</script>
+{% endblock extra-script %}
+{% block footer %}
+
+{% endblock footer %}

@@ -1,0 +1,16 @@
+<h1>list</h1>
+
+{% comment %} {% if data %}
+    
+    {% for i in data %}
+        {% if i.university == '가천대학교' %}
+            <a href="{% url 'uni_depart_site:detail' i.id %}"><p>{{ i.university }} 학과: {{ i.department }}</p></a>
+        {% endif %}
+    {% endfor %}   {% endcomment %}
+{% if university %}
+    {% for i in university %}
+        <p>{{ i.uni_code }} {{ i.university }}</p>
+    {% endfor %}
+{% else %}
+    no result
+{% endif %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+    {% if search_word %}
+        {% for i in object_list %} 
+
+            <a href="{% url 'uni_depart_site:uni_list' i.uni_code %}">{{ i.university }} </a> 
+            </br>
+            
+        {% endfor %} 
+    {% else %}
+        no result       
+    {% endif %}
+
+    
+    {% comment %} {{ object_list }}
+    {{ search_word }}
+    <br>
+    <div>
+        <span>
+        
+            {% if object_list.has_previous %}
+
+                <a href="?page={{ object_list.previous_page_number }}">PreviousPage</a>
+            {% endif %}
+
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}
+
+            {% if object_list.has_next %}
+                <a href="?page={{ object_list.next_page_number }}">NextPage</a>
+            {% endif %}
+        </span>
+
+    </div> {% endcomment %}
+</div>
+{% endblock content %}
