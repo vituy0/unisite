@@ -26,7 +26,11 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+=======
+ALLOWED_HOSTS = ['.elasticbeanstalk.com', '192.168.56.101', '127.0.0.1']
+>>>>>>> 99a53bae68fcb5795231bea5a66ae6a5dff28298
 
 
 # Application definition
@@ -139,3 +143,7 @@ AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazo
 AWS_DEFAULT_ACL = 'public-read'
 
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 99a53bae68fcb5795231bea5a66ae6a5dff28298
