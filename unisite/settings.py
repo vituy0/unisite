@@ -26,15 +26,9 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
-=======
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
-=======
-ALLOWED_HOSTS = ['.elasticbeanstalk.com', '192.168.56.101', '127.0.0.1']
->>>>>>> 99a53bae68fcb5795231bea5a66ae6a5dff28298
->>>>>>> ae79f8f5b0defe5140bb59c3e024871c9f36238c
+
+ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', '.elasticbeanstalk.com']
+
 
 
 # Application definition
