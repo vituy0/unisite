@@ -1,3 +1,5 @@
+
+
 """
 Django settings for unisite project.
 
@@ -20,16 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'sa+_6%tjyd5unhlh)ntn^=m!esg#4%os&er$v!&5%jy+(kr5^f'
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY'] 
+SECRET_KEY = 'sa+_6%tjyd5unhlh)ntn^=m!esg#4%os&er$v!&5%jy+(kr5^f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', '.elasticbeanstalk.com']
-
-
 
 # Application definition
 
@@ -41,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'uni_depart_site',
-    'storages',
 
 ]
 
@@ -53,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+ 
 ]
 
 ROOT_URLCONF = 'unisite.urls'
@@ -78,13 +77,13 @@ WSGI_APPLICATION = 'unisite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 
 # Password validation
@@ -111,13 +110,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -126,18 +125,3 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-
-
-
-# STATICFILES_STORAGE = 'unisite.storage.S3StaticStorage'
-# DEFAULT_FILE_STORAGE = 'unisite.storage.S3MediaStorage'
-
-# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-# AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-# AWS_S3_REGION_NAME = 'ap-northeast-2'
-# AWS_STORAGE_BUCKET_NAME = 'rong1-bucket'
-# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
-# AWS_DEFAULT_ACL = 'public-read'
-
-
