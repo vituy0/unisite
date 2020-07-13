@@ -130,14 +130,14 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 
-STATICFILES_STORAGE = 'unisite.storage.S3StaticStorage'
-DEFAULT_FILE_STORAGE = 'unisite.storage.S3MediaStorage'
+# STATICFILES_STORAGE = 'unisite.storage.S3StaticStorage'
+# DEFAULT_FILE_STORAGE = 'unisite.storage.S3MediaStorage'
 
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_S3_REGION_NAME = 'ap-northeast-2'
-AWS_STORAGE_BUCKET_NAME = 'rong1-bucket'
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
-AWS_DEFAULT_ACL = 'public-read'
+# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+# AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+# AWS_S3_REGION_NAME = 'ap-northeast-2'
+# AWS_STORAGE_BUCKET_NAME = 'rong1-bucket'
+# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
+# AWS_DEFAULT_ACL = 'public-read'
 
 
